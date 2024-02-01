@@ -5,7 +5,9 @@ export const Footer = () => {
     <>
         <footer className='bg-gray-800 text-gray-200 p-4 text-center'>
             <p>
-            &copy; 2021 Pokedex
+            &copy; {
+                new Date().getFullYear()
+            } Pokedex
             </p>
         </footer>
     </>

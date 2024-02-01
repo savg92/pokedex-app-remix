@@ -1,6 +1,10 @@
 import type { MetaFunction } from '@remix-run/node';
 import { json, useLoaderData } from '@remix-run/react';
-import { getPokemons } from '~/models/pokemon.server';
+import { getPokemon, getPokemons } from '~/models/pokemon.server';
+
+import Pagination from '~/components/PaginationComponent/PaginationComponent';
+import CardLayout from '~/components/CardLayout/CardLayout';
+import { useState } from 'react';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -9,9 +13,15 @@ export const meta: MetaFunction = () => {
 	];
 };
 
-
 type LoaderData = {
 	data: Awaited<ReturnType<typeof getPokemons>>;
+};
+
+type Pokemon = {
+	id: number;
+	name: string;
+	img: string;
+	type: string;
 };
 
 export const loader = async () => {
@@ -22,17 +32,38 @@ export const loader = async () => {
 
 export default function Index() {
 	const { data } = useLoaderData<LoaderData>();
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 20;
 
-	console.log(data);
+	// Calculate the items for the current page
+	const indexOfLastItem = currentPage * itemsPerPage;
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+	const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+	const handlePageChange = (pageNumber: number) => {
+		setCurrentPage(pageNumber);
+	};
 
 	return (
 		<>
-			<h1>Welcome to your Pokedex!</h1>
+			<h1 className='my-6 border-b-2 text-center text-3xl'>
+				Welcome to your Pokedex!
+			</h1>
 
 			<section>
-				{data.map((pokemon) => (
-					<div key={pokemon.name}>{pokemon.name}</div>
-				))}
+				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
+					{currentItems.map((pokemon: Pokemon) => (
+						<CardLayout
+							key={pokemon.id}
+							{...pokemon}
+						/>
+					))}
+				</div>
+				<Pagination
+					dataLength={data.length}
+					itemsPerPage={itemsPerPage}
+					page={handlePageChange}
+				/>
 			</section>
 		</>
 	);
