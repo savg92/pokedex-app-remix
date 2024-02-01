@@ -11,9 +11,11 @@ import {
 } from "@remix-run/react";
 
 import stylesheet from "~/tailwind.css";
+
 import clsx from "clsx"
 import { PreventFlashOnWrongTheme, ThemeProvider, useTheme } from "remix-themes"
 import { themeSessionResolver } from "./sessions.server";
+import Layout from "./components/Layout";
 
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -60,7 +62,7 @@ export function App() {
 				<Links />
 			</head>
 			<body>
-				<Outlet />
+				<Layout />
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
