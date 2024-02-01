@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark,
+:root[class~="dark"] {
+    --bg: #1a202c;
+    --text: #e2e8f0;
+    --border: #2d3748;
+    --shadow: #000;
+    --code: #f8f8f2;
+    --accent: #f56565;
+}
