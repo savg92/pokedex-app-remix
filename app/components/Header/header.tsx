@@ -1,4 +1,24 @@
+import { Link } from "@remix-run/react"
 import { ModeToggle } from "./mode-toggle"
+
+const headerLinks = [
+    {
+        name: "Home",
+        path: "/",
+    },
+    {
+        name: "About",
+        path: "/about",
+    },
+    {
+        name: "Services",
+        path: "/services",
+    },
+    {
+        name: "Contact",
+        path: "/contact",
+    },
+    ]
 
 const Header = () => {
   return (
@@ -10,10 +30,11 @@ const Header = () => {
             </div>
             <nav>
                 <ul className="flex gap-4 text-lg font-semibold uppercase tracking-wider" role="navigation">
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Services</li>
-                    <li>Contact</li>
+                    {headerLinks.map((link) => (
+                        <li key={link.path}>
+                            <Link to={link.path}>{link.name}</Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
             <ModeToggle />

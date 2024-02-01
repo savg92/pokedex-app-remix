@@ -1,19 +1,39 @@
-import type { MetaFunction } from "@remix-run/node";
-import Header from "~/components/Header/header";
+import type { MetaFunction } from '@remix-run/node';
+import { json, useLoaderData } from '@remix-run/react';
+import { getPokemons } from '~/models/pokemon.server';
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "Pokedex" },
-    { name: "Pokedex app", content: "Welcome to your Pokedex!" },
-  ];
+	return [
+		{ title: 'Pokedex' },
+		{ name: 'Pokedex app', content: 'Welcome to your Pokedex!' },
+	];
+};
+
+
+type LoaderData = {
+	data: Awaited<ReturnType<typeof getPokemons>>;
+};
+
+export const loader = async () => {
+	return json<LoaderData>({
+		data: await getPokemons(),
+	});
 };
 
 export default function Index() {
-  return (
+	const { data } = useLoaderData<LoaderData>();
+
+	console.log(data);
+
+	return (
 		<>
-			<main>
-				<h1>Welcome to your Pokedex!</h1>
-			</main>
+			<h1>Welcome to your Pokedex!</h1>
+
+			<section>
+				{data.map((pokemon) => (
+					<div key={pokemon.name}>{pokemon.name}</div>
+				))}
+			</section>
 		</>
 	);
 }
