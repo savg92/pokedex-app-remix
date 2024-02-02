@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react"
 import { ModeToggle } from "./mode-toggle"
+import Logo from '../../../assets/pokemon.svg';
 
 const headerLinks = [
     {
@@ -25,8 +26,8 @@ const Header = () => {
     <>
         <header className="flex justify-between items-center p-4">
             <div className="flex items-center gap-2">
-                <img src="" alt="Logo" />
-                <p>Logo</p>
+                <img src={Logo} alt="Logo" className="w-20"/>
+                <p>Pokedex</p>
             </div>
             <nav>
                 <ul className="flex gap-4 text-lg font-semibold uppercase tracking-wider" role="navigation">

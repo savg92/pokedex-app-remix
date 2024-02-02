@@ -5,6 +5,7 @@ import { getPokemon, getPokemons } from '~/models/pokemon.server';
 import Pagination from '~/components/PaginationComponent/PaginationComponent';
 import CardLayout from '~/components/CardLayout/CardLayout';
 import { useState } from 'react';
+import Logo from '../assets/pokemon.svg';
 
 export const meta: MetaFunction = () => {
 	return [

@@ -8,30 +8,24 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ params }) => {
 	return json({
-		pokemon: await getPokemon(params?.name),
+		pokemon: await getPokemon(params.pokemon as string),
 	});
 };
 
 export default function PostSlug() {
 	const { pokemon } = useLoaderData() as LoaderData;
 
-    // console.log(pokemon);
-
 	return (
 		<main className='mx-auto max-w-4xl'>
 			<h1 className='my-6 border-b-2 text-center text-3xl'>
-				You caught: {pokemon.name}
+				You caught: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
 			</h1>
 			<img
 				className='mx-auto'
 				src={pokemon.img}
 			/>
-            <p>
-                Type: {pokemon.type}
-            </p>
-            <p>
-                Id: {pokemon.id}
-            </p>
+			<p>Type: {pokemon.type}</p>
+			<p>Id: {pokemon.id}</p>
 		</main>
 	);
 }

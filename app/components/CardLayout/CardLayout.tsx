@@ -19,7 +19,7 @@ const CardLayout = ({ id, name, img, type }: Pokemon) => {
 		<>
 			<Card key={id}>
 				<CardHeader>
-					<CardTitle>{name}</CardTitle>
+					<CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
 					<CardDescription>
 						Id: {id}
 						<br />
