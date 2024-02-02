@@ -1,6 +1,20 @@
-import { json, LoaderFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { json, LoaderFunction, MetaFunction } from '@remix-run/node';
+import { useLoaderData, useParams } from '@remix-run/react';
 import { getPokemon } from '~/models/pokemon.server';
+import Logo from '~/assets/pokemon.svg';
+
+export const meta: MetaFunction = () => {
+	const { pokemon } = useParams() as { pokemon: string };
+
+	return [
+		{
+			rel: 'icon',
+			href: Logo,
+			type: 'image/svg+xml',
+		},
+		{ title: `Pokedex - ${pokemon[0].toUpperCase() + pokemon.slice(1)}` },
+	];
+};
 
 type LoaderData = {
 	pokemon: Awaited<ReturnType<typeof getPokemon>>;

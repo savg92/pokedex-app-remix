@@ -25,10 +25,11 @@ const Header = () => {
   return (
     <>
         <header className="flex justify-between items-center p-4">
-            <div className="flex items-center gap-2">
+            <Link 
+                to="/"
+            className="flex items-center gap-2">
                 <img src={Logo} alt="Logo" className="w-20"/>
-                <p>Pokedex</p>
-            </div>
+            </Link>
             <nav>
                 <ul className="flex gap-4 text-lg font-semibold uppercase tracking-wider" role="navigation">
                     {headerLinks.map((link) => (

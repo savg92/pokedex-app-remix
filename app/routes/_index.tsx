@@ -9,6 +9,11 @@ import Logo from '../assets/pokemon.svg';
 
 export const meta: MetaFunction = () => {
 	return [
+		{
+			rel: 'icon',
+			href: Logo,
+			type: 'image/svg+xml',
+		},
 		{ title: 'Pokedex' },
 		{ name: 'Pokedex app', content: 'Welcome to your Pokedex!' },
 	];
