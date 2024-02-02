@@ -1,32 +1,60 @@
 export const getPokemons = async () => {
-	const res = await fetch(
-		'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
-	).then((res) => res.json());
+	try {
+		const res = await fetch(
+			'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
+		).then((res) => res.json());
 
-	const pokemons = await Promise.all(
-		res.results.map(async (pokemon: any) => {
-			const pokemonResponse = await fetch(pokemon.url).then((res) =>
-				res.json()
-			);
-			return {
-				name: pokemon.name,
-				img: pokemonResponse.sprites.front_default,
-                id: pokemonResponse.id,
-                type: pokemonResponse.types[0].type.name
-			};
-		})
-	);
+		const pokemons = await Promise.all(
+			res.results.map(async (pokemon: any) => {
+				const pokemonResponse = await fetch(pokemon.url).then((res) =>
+					res.json()
+				);
+				return {
+					name: pokemon.name,
+					img: pokemonResponse.sprites.front_default,
+					id: pokemonResponse.id,
+					type: pokemonResponse.types[0].type.name,
+				};
+			})
+		);
 
-	return pokemons;
+		return pokemons;
+	}
+	catch (e) {
+		return [
+			{
+				name: 'Not Found',
+				img: 'https://via.placeholder.com/150',
+				id: 0,
+				type: 'none',
+			},
+		];
+	}
 };
 
 export const getPokemon = async (name: string | undefined) => {
-	const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then(
-		(res) => res.json()
-	);
+	const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
 
-	return {
-		name: name,
-		img: res.sprites.front_default,
-	};
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		} else {
+			const data = await response.json();
+			return {
+				name: data.name,
+				img: data.sprites.front_default,
+				id: data.id,
+				type: data.types[0].type.name,
+			};
+			}
+	} catch (e) {
+		// console.log(e);
+		return {
+			name: 'Not Found',
+			img: 'https://via.placeholder.com/150',
+			id: 0,
+			type: 'none',
+		};
+	}
 };

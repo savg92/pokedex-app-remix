@@ -1,5 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
-import { json, useLoaderData } from '@remix-run/react';
+import { Link, json, useLoaderData } from '@remix-run/react';
 import { getPokemon, getPokemons } from '~/models/pokemon.server';
 
 import Pagination from '~/components/PaginationComponent/PaginationComponent';
@@ -32,6 +32,7 @@ export const loader = async () => {
 
 export default function Index() {
 	const { data } = useLoaderData<LoaderData>();
+
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 20;
 
@@ -52,18 +53,20 @@ export default function Index() {
 
 			<section>
 				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
-					{currentItems.map((pokemon: Pokemon) => (
-						<CardLayout
-							key={pokemon.id}
-							{...pokemon}
-						/>
+					{currentItems.map((pokemon: Pokemon, index: number) => (
+						<Link
+							to={pokemon.name}
+							key={pokemon.name + index}
+						>
+							<CardLayout {...pokemon} />
+						</Link>
 					))}
 				</div>
-				<Pagination
+				{/* <Pagination
 					dataLength={data.length}
 					itemsPerPage={itemsPerPage}
 					page={handlePageChange}
-				/>
+				/> */}
 			</section>
 		</>
 	);
