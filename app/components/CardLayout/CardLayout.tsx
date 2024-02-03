@@ -17,24 +17,21 @@ type Pokemon = {
 const CardLayout = ({ id, name, img, type }: Pokemon) => {
 	return (
 		<>
-			<Card key={id}>
+			<Card
+				key={id}
+				className='bg-white rounded-lg shadow-lg p-4 dark:bg-gray-600'
+			>
 				<CardHeader>
-					<CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
-					<CardDescription>
-						Id: {id}
-						<br />
-						Type: {type}
-					</CardDescription>
-				</CardHeader>
-				<CardContent>
 					<img
 						src={img}
 						alt={name}
 					/>
+					<p className='text-xs text-gray-500 dark:text-gray-400'>Id: {id}</p>
+				</CardHeader>
+				<CardContent>
+					<CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
 				</CardContent>
-				<CardFooter>
-					<p>Card Footer</p>
-				</CardFooter>
+				<CardFooter>Type: {type[0].toUpperCase() + type.slice(1)}</CardFooter>
 			</Card>
 		</>
 	);

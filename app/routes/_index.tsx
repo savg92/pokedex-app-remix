@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@remix-run/node';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { Link, json, useLoaderData } from '@remix-run/react';
 import { getPokemon, getPokemons } from '~/models/pokemon.server';
 
@@ -6,17 +6,22 @@ import Pagination from '~/components/PaginationComponent/PaginationComponent';
 import CardLayout from '~/components/CardLayout/CardLayout';
 import { useState } from 'react';
 import Logo from '../assets/pokemon.svg';
+import Pokedex from '../assets/pokedex2.png';
+import Pokeball from '../assets/pokeball2.png';
 
 export const meta: MetaFunction = () => {
 	return [
-		{
-			rel: 'icon',
-			href: Logo,
-			type: 'image/svg+xml',
-		},
 		{ title: 'Pokedex' },
 		{ name: 'Pokedex app', content: 'Welcome to your Pokedex!' },
 	];
+};
+
+export const links: LinksFunction = () => {
+	return [{
+		rel: 'icon',
+		href: Pokeball,
+		type: 'image/png',
+	}];
 };
 
 type LoaderData = {
