@@ -1,6 +1,6 @@
 import { json, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { useLoaderData, useParams } from '@remix-run/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getPokemon } from '~/models/pokemon.server';
 
 export const meta: MetaFunction = () => {
@@ -23,23 +23,24 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function PostSlug() {
 	const { pokemon } = useLoaderData() as LoaderData;
 	
-	const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-	let isFavorite = false;
+	const [favorites, setFavorites] = useState<string[]>([]);
+	let [isFavorite, setIsFavorite] = useState(false);
 
 	useEffect(() => {
-		//check if the pokemon is in the favorites
-		isFavorite = favorites.includes(pokemon.name);
-	}, [favorites]);
+		const favoritesFromStorage = JSON.parse(
+			localStorage.getItem('favorites') || '[]'
+		);
+		setFavorites(favoritesFromStorage);
+		setIsFavorite(favoritesFromStorage.includes(pokemon.name));
+	}, []);
 
-	// add/remove pokemon to the favorites
 	const handleAddRemoveToFavorites = (pokemon: string) => {
-		const pokemonIndex = favorites.findIndex((p: string) => p === pokemon);
-		if (pokemonIndex === -1) {
-			favorites.push(pokemon);
-		} else {
-			favorites.splice(pokemonIndex, 1);
-		}
-		localStorage.setItem('favorites', JSON.stringify(favorites));
+		const updatedFavorites = favorites.includes(pokemon)
+			? favorites.filter((fav) => fav !== pokemon)
+			: [...favorites, pokemon];
+		localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+		setFavorites(updatedFavorites);
+		setIsFavorite(updatedFavorites.includes(pokemon));
 	};
 
 	return (
