@@ -1,13 +1,12 @@
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { Link, json, useLoaderData } from '@remix-run/react';
-import { getPokemon, getPokemons } from '~/models/pokemon.server';
+import { getPokemons } from '~/models/pokemon.server';
 
 import Pagination from '~/components/PaginationComponent/PaginationComponent';
 import CardLayout from '~/components/CardLayout/CardLayout';
 import { useState } from 'react';
-import Logo from '../assets/pokemon.svg';
-import Pokedex from '../assets/pokedex2.png';
 import Pokeball from '../assets/pokeball2.png';
+import Favorites from '~/components/Favorites/Favorites';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -61,8 +60,10 @@ export default function Index() {
 			<h1 className='my-6 border-b-2 text-center text-3xl'>
 				Welcome to your Pokedex!
 			</h1>
-
 			<section>
+				<Favorites />
+			</section>
+			<section className='mt-6'>
 				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 					{currentItems.map((pokemon: Pokemon, index: number) => (
 						<Link
