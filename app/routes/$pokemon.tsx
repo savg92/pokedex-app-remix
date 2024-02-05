@@ -5,9 +5,8 @@ import { getPokemon } from '~/models/pokemon.server';
 
 export const meta: MetaFunction = () => {
 	const { pokemon } = useParams() as { pokemon: string };
-	return [
-		{ title: `Pokedex - ${pokemon[0].toUpperCase() + pokemon.slice(1)}` },
-	];
+	let title = pokemon[0].toUpperCase() + pokemon.slice(1);
+	return [{ title: `Pokedex - ${title}` }];
 };
 
 type LoaderData = {
@@ -22,7 +21,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function PostSlug() {
 	const { pokemon } = useLoaderData() as LoaderData;
-	
+
 	const [favorites, setFavorites] = useState<string[]>([]);
 	let [isFavorite, setIsFavorite] = useState(false);
 
@@ -52,7 +51,7 @@ export default function PostSlug() {
 				className='mx-auto'
 				src={pokemon.img}
 			/>
-			<p>Type: {pokemon.type}</p>
+			<p>Type: {pokemon.type[0].toUpperCase() + pokemon.type.slice(1)}</p>
 			<p>Id: {pokemon.id}</p>
 			<button
 				className='bg-red-500 text-white px-4 py-2 rounded-md'
