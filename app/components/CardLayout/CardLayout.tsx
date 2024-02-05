@@ -19,12 +19,13 @@ const CardLayout = ({ id, name, img, type }: Pokemon) => {
 		<>
 			<Card
 				key={id}
-				className='bg-white rounded-lg shadow-lg p-4 dark:bg-gray-600'
+				className='bg-white rounded-lg shadow-lg p-4 dark:bg-gray-600 transform transition duration-300 hover:scale-105 group'
 			>
 				<CardHeader>
 					<img
 						src={img}
 						alt={name}
+						className='transition group-hover:scale-125'
 					/>
 					<p className='text-xs text-gray-500 dark:text-gray-400'>Id: {id}</p>
 				</CardHeader>
