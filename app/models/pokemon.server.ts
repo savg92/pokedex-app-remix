@@ -19,7 +19,6 @@ export const getPokemons = async (limit=151, offset=0) => {
 				};
 			})
 		);
-
 		return pokemons;
 	}
 	catch (e) {
