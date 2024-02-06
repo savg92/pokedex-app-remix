@@ -3,14 +3,15 @@ import { Link, useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { getPokemon } from '~/models/pokemon.server';
 
+type LoaderData = {
+	pokemon: Awaited<ReturnType<typeof getPokemon>>;
+};
+
 export const meta: MetaFunction = () => {
 	const { pokemon } = useParams() as { pokemon: string };
 	let title = pokemon[0].toUpperCase() + pokemon.slice(1);
-	return [{ title: `Pokedex - ${title}` }];
-};
 
-type LoaderData = {
-	pokemon: Awaited<ReturnType<typeof getPokemon>>;
+	return [{ title: `Pokedex - ` }];
 };
 
 export const loader: LoaderFunction = async ({ params }) => {

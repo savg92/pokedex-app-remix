@@ -39,7 +39,7 @@ type Pokemon = {
 
 export const loader = async () => {
 	return json<LoaderData>({
-		data: await getPokemons(),
+		data: await getPokemons(1302),
 	});
 };
 
@@ -70,18 +70,18 @@ export default function Index() {
 				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 					{currentData.map((pokemon: Pokemon, index: number) => (
 						<Link
-						to={pokemon.name}
-						key={pokemon.name + index}
+							to={pokemon.name}
+							key={pokemon.name + index}
 						>
 							<CardLayout {...pokemon} />
 						</Link>
 					))}
 				</div>
-					<PaginationComponent
-						currentPage={currentPage}
-						totalPages={totalPages}
-						onPageChange={handlePageChange}
-					/>
+				<PaginationComponent
+					currentPage={currentPage}
+					totalPages={totalPages}
+					onPageChange={handlePageChange}
+				/>
 			</section>
 		</>
 	);
