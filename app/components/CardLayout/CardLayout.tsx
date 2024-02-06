@@ -18,7 +18,7 @@ const CardLayout = ({ id, name, img, type }: Pokemon) => {
 					<img
 						src={img}
 						alt={name}
-						className='transition group-hover:scale-125 sm:w-24 sm:h-24 w-20 h-20 mx-auto'
+						className='transition group-hover:scale-125 mx-auto sm:w-24 w-32'
 					/>
 					<p className='text-xs text-gray-500 dark:text-gray-400'>Id: {id}</p>
 					<CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
