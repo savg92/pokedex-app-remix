@@ -10,9 +10,9 @@ export const getPokemons = async (limit=151, offset=0) => {
 					res.json()
 				);
 				return {
-					name: pokemon.name,
-					img: pokemonResponse.sprites.front_default,
 					id: pokemonResponse.id,
+					name: pokemonResponse.name,
+					img: pokemonResponse.sprites.front_default,
 					type: pokemonResponse.types[0].type.name,
 				};
 			})
@@ -46,6 +46,9 @@ export const getPokemon = async (name: string | undefined) => {
 				img: data.sprites.front_default,
 				id: data.id,
 				type: data.types[0].type.name,
+				avilities: data.abilities,
+				height: data.height,
+				weight: data.weight,
 			};
 			}
 	} catch (e) {

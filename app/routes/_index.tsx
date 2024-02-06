@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Pokeball from '../assets/pokeball2.png';
 import Favorites from '~/components/Favorites/Favorites';
 import { PaginationComponent } from '~/components/PaginationComponent/PaginationComponent';
-import { LoaderData, Pokemon } from '~/types';
+import { LoaderDataGetPokemons, Pokemon } from '~/types';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -28,13 +28,13 @@ export const links: LinksFunction = () => {
 };
 
 export const loader = async () => {
-	return json<LoaderData>({
+	return json<LoaderDataGetPokemons>({
 		data: await getPokemons(), // limit and offset are optional, default is 151 and 0
 	});
 };
 
 export default function Index() {
-	const { data } = useLoaderData<LoaderData>();
+	const { data } = useLoaderData<LoaderDataGetPokemons>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 20;
 	const totalPages = Math.ceil(data.length / itemsPerPage);

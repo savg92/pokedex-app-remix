@@ -1,7 +1,10 @@
-import { getPokemons } from "./models/pokemon.server";
+import { getPokemon, getPokemons } from "./models/pokemon.server";
 
-type LoaderData = {
+type LoaderDataGetPokemons = {
 	data: Awaited<ReturnType<typeof getPokemons>>;
+};
+type LoaderDataGetPokemon = {
+	pokemon: Awaited<ReturnType<typeof getPokemon>>;
 };
 
 type Pokemon = {
@@ -11,4 +14,4 @@ type Pokemon = {
 	type: string;
 };
 
-export type { LoaderData, Pokemon };
+export type { LoaderDataGetPokemons, Pokemon, LoaderDataGetPokemon };
