@@ -1,5 +1,5 @@
 import { json, LoaderFunction, MetaFunction } from '@remix-run/node';
-import { useLoaderData, useParams } from '@remix-run/react';
+import { Link, useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { getPokemon } from '~/models/pokemon.server';
 
@@ -43,22 +43,28 @@ export default function PostSlug() {
 	};
 
 	return (
-		<main className='mx-auto max-w-4xl'>
+		<>
 			<h1 className='my-6 border-b-2 text-center text-3xl'>
 				You caught: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
 			</h1>
-			<img
-				className='mx-auto'
-				src={pokemon.img}
-			/>
-			<p>Type: {pokemon.type[0].toUpperCase() + pokemon.type.slice(1)}</p>
-			<p>Id: {pokemon.id}</p>
-			<button
-				className='bg-red-500 text-white px-4 py-2 rounded-md'
-				onClick={() => handleAddRemoveToFavorites(pokemon.name)}
-			>
-				{isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-			</button>
-		</main>
+
+			<section>
+				<img
+					className='mx-auto'
+					src={pokemon.img}
+				/>
+				<p>Type: {pokemon.type[0].toUpperCase() + pokemon.type.slice(1)}</p>
+				<p>Id: {pokemon.id}</p>
+				<button
+					className='bg-red-500 text-white px-4 py-2 rounded-md'
+					onClick={() => handleAddRemoveToFavorites(pokemon.name)}
+				>
+					{isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+				</button>
+			</section>
+			<Link to='/'>
+				<p>﹤ Back to the Pokedex</p>
+			</Link>
+		</>
 	);
 }

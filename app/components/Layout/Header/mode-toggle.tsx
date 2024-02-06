@@ -21,7 +21,7 @@ export function ModeToggle() {
 					size='icon'
 				>
 					<Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-					<Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 mt-[-1rem]' />
+					<Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 mt-[-1.3rem]' />
 					<span className='sr-only'>Toggle theme</span>
 				</Button>
 			</DropdownMenuTrigger>
@@ -31,13 +31,13 @@ export function ModeToggle() {
 			>
 				<DropdownMenuItem
 					onClick={() => setTheme(Theme.LIGHT)}
-					className='cursor-pointer'
+					className='cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-600'
 				>
 					Light
 				</DropdownMenuItem>
 				<DropdownMenuItem
 					onClick={() => setTheme(Theme.DARK)}
-					className='cursor-pointer'
+					className='cursor-pointer hover:bg-gray-700 dark:hover:bg-gray-600'
 				>
 					Dark
 				</DropdownMenuItem>

@@ -64,7 +64,7 @@ export function App() {
 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
 				<Links />
 			</head>
-			<body>
+			<body className='flex flex-col min-h-screen justify-between'>
 				<Layout />
 				<ScrollRestoration />
 				<Scripts />

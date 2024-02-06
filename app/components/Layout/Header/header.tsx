@@ -9,7 +9,7 @@ const headerLinks = [
 	},
 	{
 		name: 'Favorites',
-		path: '/favorites',
+		path: 'favorites',
 	},
 ];
 

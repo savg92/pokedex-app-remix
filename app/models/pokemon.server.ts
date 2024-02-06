@@ -1,7 +1,7 @@
-export const getPokemons = async () => {
+export const getPokemons = async (limit=151, offset=0) => {
 	try {
 		const res = await fetch(
-			'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
+			`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
 		).then((res) => res.json());
 
 		const pokemons = await Promise.all(
@@ -49,7 +49,6 @@ export const getPokemon = async (name: string | undefined) => {
 			};
 			}
 	} catch (e) {
-		// console.log(e);
 		return {
 			name: 'Not Found',
 			img: 'https://via.placeholder.com/150',

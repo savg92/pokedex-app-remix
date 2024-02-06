@@ -1,12 +1,13 @@
+// Index.js
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { Link, json, useLoaderData } from '@remix-run/react';
 import { getPokemons } from '~/models/pokemon.server';
 
-import Pagination from '~/components/PaginationComponent/PaginationComponent';
 import CardLayout from '~/components/CardLayout/CardLayout';
 import { useState } from 'react';
 import Pokeball from '../assets/pokeball2.png';
 import Favorites from '~/components/Favorites/Favorites';
+import { PaginationComponent } from '~/components/PaginationComponent/PaginationComponent';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -16,11 +17,13 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => {
-	return [{
-		rel: 'icon',
-		href: Pokeball,
-		type: 'image/png',
-	}];
+	return [
+		{
+			rel: 'icon',
+			href: Pokeball,
+			type: 'image/png',
+		},
+	];
 };
 
 type LoaderData = {
@@ -42,18 +45,18 @@ export const loader = async () => {
 
 export default function Index() {
 	const { data } = useLoaderData<LoaderData>();
-
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 20;
+	const totalPages = Math.ceil(data.length / itemsPerPage);
 
-	// Calculate the items for the current page
-	const indexOfLastItem = currentPage * itemsPerPage;
-	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-	const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-
-	const handlePageChange = (pageNumber: number) => {
-		setCurrentPage(pageNumber);
+	const handlePageChange = (page: number) => {
+		setCurrentPage(page);
 	};
+
+	const currentData = data.slice(
+		(currentPage - 1) * itemsPerPage,
+		currentPage * itemsPerPage
+	);
 
 	return (
 		<>
@@ -65,20 +68,20 @@ export default function Index() {
 			</section>
 			<section className='mt-6'>
 				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
-					{currentItems.map((pokemon: Pokemon, index: number) => (
+					{currentData.map((pokemon: Pokemon, index: number) => (
 						<Link
-							to={pokemon.name}
-							key={pokemon.name + index}
+						to={pokemon.name}
+						key={pokemon.name + index}
 						>
 							<CardLayout {...pokemon} />
 						</Link>
 					))}
 				</div>
-				{/* <Pagination
-					dataLength={data.length}
-					itemsPerPage={itemsPerPage}
-					page={handlePageChange}
-				/> */}
+					<PaginationComponent
+						currentPage={currentPage}
+						totalPages={totalPages}
+						onPageChange={handlePageChange}
+					/>
 			</section>
 		</>
 	);

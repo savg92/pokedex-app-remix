@@ -1,3 +1,4 @@
+// PaginationComponent.js
 import {
 	Pagination,
 	PaginationContent,
@@ -7,57 +8,97 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from '@/components/ui/pagination';
-import { useState } from 'react';
 
-type PaginationProps = {
-    dataLength: number;
-    itemsPerPage: number;
-	page?: (page: number) => void;
+type PaginationComponentProps = {
+	currentPage: number;
+	totalPages: number;
+	onPageChange: (page: number) => void;
 };
 
-const PaginationComponent = ({ dataLength, itemsPerPage, page }: PaginationProps) => {
-	const [currentPage, setCurrentPage] = useState(1);
-	const totalPages = Math.ceil(dataLength / itemsPerPage);
-	const handlePageChange = (page: number) => {
-		setCurrentPage(page);
+export const PaginationComponent = ({
+	currentPage,
+	totalPages,
+	onPageChange,
+}: PaginationComponentProps) => {
+	const handleFirst = () => {
+		onPageChange(1);
 	};
 
-	if (totalPages === 1) {
-		return null;
-	}
+	const handlePrevious = () => {
+		if (currentPage > 1) {
+			onPageChange(currentPage - 1);
+		}
+	};
+
+	const handleNext = () => {
+		if (currentPage < totalPages) {
+			onPageChange(currentPage + 1);
+		}
+	};
+
+	const handleLast = () => {
+		onPageChange(totalPages);
+	};
+
+	// Determine the range of page numbers to display (max 3)
+	const startPage = Math.max(1, currentPage - 1);
+	const endPage = Math.min(totalPages, startPage + 2);
 
 	return (
-		<>
-			<Pagination>
-				<PaginationContent>
-					<PaginationItem>
-						<PaginationPrevious
+		<Pagination className='flex justify-center my-6' aria-label='Pagination'>
+			<PaginationContent>
+				<PaginationItem>
+					<button
+						onClick={handleFirst}
+						disabled={currentPage === 1}
+						className='disabled:opacity-50'
+					>
+						First Page
+					</button>
+				</PaginationItem>
+				<PaginationItem>
+					<PaginationPrevious
+						href='#'
+						onClick={handlePrevious}
+						className='flex items-center'
+					/>
+				</PaginationItem>
+				{startPage > 1 && <PaginationEllipsis />}
+				{Array.from(
+					{ length: endPage - startPage + 1 },
+					(_, i) => startPage + i
+				).map((page) => (
+					<PaginationItem key={page}>
+						<PaginationLink
 							href='#'
-							onClick={() => handlePageChange(currentPage - 1)}
-							// disabled={currentPage === 1}
-						/>
+							onClick={() => onPageChange(page)}
+							style={{
+								fontWeight: page === currentPage ? 'bold' : 'normal',
+								textDecoration: page === currentPage ? 'underline' : 'none',
+							}}
+						>
+							{page}
+						</PaginationLink>
 					</PaginationItem>
-					{Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-						<PaginationItem key={page}>
-							<PaginationLink
-								href='#'
-								onClick={() => handlePageChange(page)}
-							>
-								{page}
-							</PaginationLink>
-						</PaginationItem>
-					))}
-					<PaginationItem>
-						<PaginationNext
-							href='#'
-							onClick={() => handlePageChange(currentPage + 1)}
-							// disabled={currentPage === totalPages}
-						/>
-					</PaginationItem>
-				</PaginationContent>
-			</Pagination>
-		</>
+				))}
+				{endPage < totalPages && <PaginationEllipsis />}
+				<PaginationItem>
+					<PaginationNext
+						href='#'
+						onClick={handleNext}
+						className='flex items-center'
+					/>
+				</PaginationItem>
+				<PaginationItem>
+					<button
+						onClick={handleLast}
+						disabled={currentPage === totalPages}
+						className='disabled:opacity-50'
+					>
+						Last
+					</button>
+				</PaginationItem>
+			</PaginationContent>
+		</Pagination>
 	);
 };
-
-export default PaginationComponent;
