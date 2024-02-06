@@ -29,7 +29,7 @@ const Header = () => {
 				</Link>
 				<nav>
 					<ul
-						className='flex gap-8 text-lg font-semibold  tracking-wider'
+						className='flex gap-8 text-lg font-semibold tracking-wider'
 						role='navigation'
 					>
 						{/* {headerLinks.map((link) => (
@@ -40,14 +40,10 @@ const Header = () => {
 							</li>
 						))} */}
 						<li>
-							<Link to='/'>
-								Home
-							</Link>
+							<Link to='/'>Home</Link>
 						</li>
 						<li>
-							<Link to='/favorites'>
-								Favorites
-							</Link>
+							<Link to='/favorites'>Favorites</Link>
 						</li>
 					</ul>
 				</nav>
