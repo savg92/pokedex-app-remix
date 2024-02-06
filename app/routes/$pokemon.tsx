@@ -175,8 +175,7 @@ export default function PostSlug() {
 						</ul>
 					</div>
 					<button
-						className='bg-red-500 text-white px-4 py-2 rounded-md'
-						onClick={() => handleAddRemoveToFavorites(pokemon.name)}
+						className='bg-red-700 text-white px-4 py-2 rounded-md'						onClick={() => handleAddRemoveToFavorites(pokemon.name)}
 					>
 						{isFavorite ? 'Remove from favorites' : 'Add to favorites'}
 					</button>
