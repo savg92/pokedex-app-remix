@@ -28,7 +28,7 @@ const Favorites = () => {
 	return (
 		<>
 			{favorites.length > 0 ? (
-				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
+				<div className='flex flex-wrap justify-center gap-4'>
 					{favorites.map((pokemon, index) => (
 						<Link
 							relative='route'
