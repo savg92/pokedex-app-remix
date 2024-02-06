@@ -49,7 +49,12 @@ export default function PostSlug() {
 			<section className='flex flex-col md:flex-row gap-4'>
 				<img
 					className='mx-auto h-1/5 w-full'
-					src={pokemon.img.other['official-artwork'].front_default}
+					// src={pokemon.img.other['official-artwork'].front_default}
+					src={pokemon.img.other['dream_world'].front_default}
+					// src={
+					// 	pokemon.img.versions['generation-v']['black-white'].animated
+					// 		.front_default
+					// }
 					alt={pokemon.name}
 				/>
 				<div
