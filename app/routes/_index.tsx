@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Pokeball from '../assets/pokeball2.png';
 import Favorites from '~/components/Favorites/Favorites';
 import { PaginationComponent } from '~/components/PaginationComponent/PaginationComponent';
+import { LoaderData, Pokemon } from '~/types';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -26,20 +27,9 @@ export const links: LinksFunction = () => {
 	];
 };
 
-type LoaderData = {
-	data: Awaited<ReturnType<typeof getPokemons>>;
-};
-
-type Pokemon = {
-	id: number;
-	name: string;
-	img: string;
-	type: string;
-};
-
 export const loader = async () => {
 	return json<LoaderData>({
-		data: await getPokemons(1302),
+		data: await getPokemons(), // limit and offset are optional, default is 151 and 0
 	});
 };
 
@@ -82,6 +72,25 @@ export default function Index() {
 					totalPages={totalPages}
 					onPageChange={handlePageChange}
 				/>
+				<div className='flex justify-center mt-6 gap-4'>
+					<label htmlFor='page'>Select a page:</label>
+					<select
+						name='page'
+						id='page'
+						onChange={(e) => handlePageChange(Number(e.target.value))}
+						value={currentPage}
+						className='bg-gray-200 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white'
+					>
+						{Array.from({ length: totalPages }, (_, i) => (
+							<option
+								key={i + 1}
+								value={i + 1}
+							>
+								{i + 1}
+							</option>
+						))}
+					</select>
+				</div>
 			</section>
 		</>
 	);
