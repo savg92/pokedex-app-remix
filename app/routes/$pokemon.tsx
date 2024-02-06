@@ -155,7 +155,10 @@ export default function PostSlug() {
 						<ul className='flex flex-col gap-2 ml-4'>
 							{pokemon.avilities.map(
 								(ability: { ability: { name: string } }, index: number) => (
-									<li key={index}>{ability.ability.name}</li>
+									<li key={index}>
+										{ability.ability.name[0].toUpperCase() +
+											ability.ability.name.slice(1)}
+									</li>
 								)
 							)}
 						</ul>
