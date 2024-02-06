@@ -24,7 +24,7 @@ const Header = () => {
 					<img
 						src={Logo}
 						alt='Logo'
-						className='w-20'
+						className='w-20 h-10'
 					/>
 				</Link>
 				<nav>
@@ -33,9 +33,9 @@ const Header = () => {
 						role='navigation'
 					>
 						{headerLinks.map((link) => (
-							<li key={link.path}>
-								<Link to={link.path}>{link.name}</Link>
-							</li>
+							<Link to={link.path}>
+								<li key={link.path}>{link.name}</li>
+							</Link>
 						))}
 					</ul>
 				</nav>
