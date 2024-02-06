@@ -33,9 +33,11 @@ const Header = () => {
 						role='navigation'
 					>
 						{headerLinks.map((link) => (
-							<Link to={link.path}>
-								<li key={link.path}>{link.name}</li>
-							</Link>
+							<li key={link.path}>
+								<Link to={link.path}>
+									{link.name}
+									</Link>
+							</li>
 						))}
 					</ul>
 				</nav>

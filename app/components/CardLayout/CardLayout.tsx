@@ -2,7 +2,6 @@ import { Badge } from '@/components/ui/badge';
 import {
 	Card,
 	CardContent,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
@@ -22,11 +21,9 @@ const CardLayout = ({ id, name, img, type }: Pokemon) => {
 						className='transition group-hover:scale-125'
 					/>
 					<p className='text-xs text-gray-500 dark:text-gray-400'>Id: {id}</p>
+					<CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardTitle>{name[0].toUpperCase() + name.slice(1)}</CardTitle>
-				</CardContent>
-				<CardFooter>
 					Type:
 					<Badge
 						className={`rounded-full w-16 flex justify-center items-center ml-2 ${
@@ -75,7 +72,7 @@ const CardLayout = ({ id, name, img, type }: Pokemon) => {
 					>
 						{type[0].toUpperCase() + type.slice(1)}
 					</Badge>
-				</CardFooter>
+				</CardContent>
 			</Card>
 		</>
 	);
