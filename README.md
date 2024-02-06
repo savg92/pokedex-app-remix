@@ -17,10 +17,18 @@ This is a simple pokedex app that uses the [PokeAPI](https://pokeapi.co/) to dis
 npm install
 ```
 
+```bash
+bun install
+```
+
 3. Start the development server
 
 ```bash
 npm run dev
+```
+
+```bash
+bun dev
 ```
 
 4. Open the app in your browser at `http://localhost:3000`
@@ -37,8 +45,3 @@ npm run dev
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-```
-
-
-```
