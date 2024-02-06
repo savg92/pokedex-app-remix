@@ -30,8 +30,13 @@ const Header = () => {
 				<nav>
 					<ul
 						className='flex gap-8 text-lg font-semibold tracking-wider'
-						role='navigation'
 					>
+						<li>
+							<Link to='/'>Home</Link>
+						</li>
+						<li>
+							<Link to='/favorites'>Favorites</Link>
+						</li>
 						{/* {headerLinks.map((link) => (
 							<li key={link.path}>
 								<Link to={link.path}>
@@ -39,12 +44,6 @@ const Header = () => {
 									</Link>
 							</li>
 						))} */}
-						<li>
-							<Link to='/'>Home</Link>
-						</li>
-						<li>
-							<Link to='/favorites'>Favorites</Link>
-						</li>
 					</ul>
 				</nav>
 				<ModeToggle />
