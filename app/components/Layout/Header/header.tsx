@@ -32,13 +32,23 @@ const Header = () => {
 						className='flex gap-4 text-lg font-semibold uppercase tracking-wider'
 						role='navigation'
 					>
-						{headerLinks.map((link) => (
+						{/* {headerLinks.map((link) => (
 							<li key={link.path}>
 								<Link to={link.path}>
 									{link.name}
 									</Link>
 							</li>
-						))}
+						))} */}
+						<li>
+							<Link to='/'>
+								Home
+							</Link>
+						</li>
+						<li>
+							<Link to='/favorites'>
+								Favorites
+							</Link>
+						</li>
 					</ul>
 				</nav>
 				<ModeToggle />
