@@ -43,7 +43,7 @@ export default function PostSlug() {
 	return (
 		<>
 			<h1 className='my-6 border-b-2 text-center text-3xl'>
-				You caught:
+				You caught: &nbsp;
 				<span className={pokemon.name === 'Not Found' ? 'text-red-500' : ''}>
 					{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
 				</span>

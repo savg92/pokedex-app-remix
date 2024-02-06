@@ -9,25 +9,14 @@ export const getPokemons = async (limit=151, offset=0) => {
 				const pokemonResponse = await fetch(pokemon.url).then((res) =>
 					res.json()
 				);
-				if (res.status === 200) {
 				return {
 					id: pokemonResponse.id,
 					name: pokemonResponse.name,
 					// img: pokemonResponse.sprites.front_default,
 					// img: pokemonResponse.sprites.versions['generation-v']['black-white'].animated.front_default,
 					img: pokemonResponse.sprites.other['official-artwork'].front_default,
-					// img: pokemonResponse.sprites.other['dream_world'].front_default,
 					type: pokemonResponse.types[0].type.name,
 				};
-				}
-				else {
-					return {
-						id: 0,
-						name: 'Not Found',
-						img: 'https://via.placeholder.com/150',
-						type: 'none',
-					};
-				}
 			})
 		);
 
@@ -52,7 +41,8 @@ export const getPokemon = async (name: string | number | undefined) => {
 		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
-		} if (response.status === 200) {
+		}
+		if (response.status === 200) {
 			const data = await response.json();
 			return {
 				name: data.name,
@@ -63,14 +53,13 @@ export const getPokemon = async (name: string | number | undefined) => {
 				height: data.height,
 				weight: data.weight,
 			};
-			}
-		else {
+		} else {
 			return {
 				name: 'Not Found',
 				img: 'https://via.placeholder.com/150',
 				id: 0,
 				type: 'none',
-				avilities: [],
+				avilities: ['none'],
 				height: 0,
 				weight: 0,
 			};

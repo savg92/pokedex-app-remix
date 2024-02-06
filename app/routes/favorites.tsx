@@ -13,9 +13,11 @@ const favorites = () => {
 				Your Favorite Pokémon
 			</h1>
 			<Favorites />
-			<Link to='/'>
-				<p>﹤ Back to the Pokedex</p>
-			</Link>
+			<div className='pt-8 px-16 w-full'>
+				<Link to='/'>
+					<p>﹤ Back to the Pokedex</p>
+				</Link>
+			</div>
 		</>
 	);
 };
