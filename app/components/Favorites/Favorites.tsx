@@ -1,22 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@remix-run/react';
 import CardLayout from '../CardLayout/CardLayout';
+import { PokemonFav } from '~/types';
 
-type Pokemon = {
-	id: number;
-	name: string;
-	sprites: {
-		front_default: string;
-	};
-	types: {
-		type: {
-			name: string;
-		};
-	}[];
-};
+
 
 const Favorites = () => {
-	const [favorites, setFavorites] = useState<Pokemon[]>([]);
+	const [favorites, setFavorites] = useState<PokemonFav[]>([]);
 
 	useEffect(() => {
 		// Ensure this code runs only on the client side

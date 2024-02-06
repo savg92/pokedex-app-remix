@@ -14,4 +14,23 @@ type Pokemon = {
 	type: string;
 };
 
-export type { LoaderDataGetPokemons, Pokemon, LoaderDataGetPokemon };
+type PokemonFav = {
+	id: number;
+	name: string;
+	sprites: {
+		front_default: string;
+	};
+	types: {
+		type: {
+			name: string;
+		};
+	}[];
+};
+
+type PaginationComponentProps = {
+	currentPage: number;
+	totalPages: number;
+	onPageChange: (page: number) => void;
+};
+
+export type { LoaderDataGetPokemons, Pokemon, LoaderDataGetPokemon, PokemonFav, PaginationComponentProps };

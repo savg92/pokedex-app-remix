@@ -6,13 +6,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-
-type Pokemon = {
-	id: number;
-	name: string;
-	img: string;
-	type: string;
-};
+import { Pokemon } from '~/types';
 
 const CardLayout = ({ id, name, img, type }: Pokemon) => {
 	return (

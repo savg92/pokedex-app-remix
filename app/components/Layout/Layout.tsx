@@ -1,7 +1,6 @@
 import { Outlet } from '@remix-run/react';
 import Header from './Header/header';
 import { Footer } from './Footer/Footer';
-import { Fragment } from 'react';
 
 const Layout = () => {
 	return (

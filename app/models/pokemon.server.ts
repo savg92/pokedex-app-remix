@@ -43,7 +43,7 @@ export const getPokemon = async (name: string | undefined) => {
 			const data = await response.json();
 			return {
 				name: data.name,
-				img: data.sprites.front_default,
+				img: data.sprites,
 				id: data.id,
 				type: data.types[0].type.name,
 				avilities: data.abilities,

@@ -8,12 +8,7 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from '@/components/ui/pagination';
-
-type PaginationComponentProps = {
-	currentPage: number;
-	totalPages: number;
-	onPageChange: (page: number) => void;
-};
+import { PaginationComponentProps } from '~/types';
 
 export const PaginationComponent = ({
 	currentPage,
@@ -45,7 +40,10 @@ export const PaginationComponent = ({
 	const endPage = Math.min(totalPages, startPage + 5);
 
 	return (
-		<Pagination className='flex justify-center my-6' aria-label='Pagination'>
+		<Pagination
+			className='flex justify-center my-6'
+			aria-label='Pagination'
+		>
 			<PaginationContent>
 				<PaginationItem>
 					<button

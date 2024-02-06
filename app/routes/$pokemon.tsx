@@ -1,8 +1,8 @@
-import { Badge } from '@/components/ui/badge';
 import { json, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Link, useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { getPokemon } from '~/models/pokemon.server';
+import { LoaderDataGetPokemon } from '~/types';
 
 export const meta: MetaFunction = () => {
 	const { pokemon } = useParams() as { pokemon: string };
@@ -46,10 +46,11 @@ export default function PostSlug() {
 				You caught: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
 			</h1>
 
-			<section className='flex flex-col gap-4'>
+			<section className='flex flex-row gap-4'>
 				<img
-					className='mx-auto'
-					src={pokemon.img}
+					className='mx-auto h-1/5'
+					src={pokemon.img.other['official-artwork'].front_default}
+					alt={pokemon.name}
 				/>
 				<div
 					className={`w-full flex flex-col gap-4 p-8 rounded-xl ${
