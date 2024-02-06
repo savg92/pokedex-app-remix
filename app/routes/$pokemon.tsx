@@ -46,7 +46,7 @@ export default function PostSlug() {
 				You caught: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
 			</h1>
 
-			<section className='flex flex-row gap-4'>
+			<section className='flex flex-col md:flex-row gap-4'>
 				<img
 					className='mx-auto h-1/5 w-full'
 					src={pokemon.img.other['official-artwork'].front_default}
