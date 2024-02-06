@@ -14,6 +14,7 @@ export const meta: MetaFunction = () => {
 	return [
 		{ title: 'Pokedex' },
 		{ name: 'Pokedex app', content: 'Welcome to your Pokedex!' },
+		{ description: 'A simple Pokedex app using Remix and Tailwind CSS' },
 	];
 };
 
@@ -71,7 +72,7 @@ export default function Index() {
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
 						className='bg-gray-200 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white'
-						/>
+					/>
 					<button
 						type='submit'
 						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed'
