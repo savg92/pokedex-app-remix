@@ -48,7 +48,7 @@ export default function PostSlug() {
 
 			<section className='flex flex-row gap-4'>
 				<img
-					className='mx-auto h-1/5 w-1/5'
+					className='mx-auto h-1/5 w-full'
 					src={pokemon.img.other['official-artwork'].front_default}
 					alt={pokemon.name}
 				/>
