@@ -37,7 +37,7 @@ export const PaginationComponent = ({
 
 	// Determine the range of page numbers to display (max 3)
 	const startPage = Math.max(1, currentPage - 1);
-	const endPage = Math.min(totalPages, startPage + 5);
+	const endPage = Math.min(totalPages, startPage + 3);
 
 	return (
 		<Pagination
@@ -51,7 +51,7 @@ export const PaginationComponent = ({
 						disabled={currentPage === 1}
 						className='disabled:opacity-50'
 					>
-						First Page
+						&lt;&lt;
 					</button>
 				</PaginationItem>
 				<PaginationItem>
@@ -92,9 +92,9 @@ export const PaginationComponent = ({
 					<button
 						onClick={handleLast}
 						disabled={currentPage === totalPages}
-						className='disabled:opacity-50'
+						className='disabled:opacity-50 flex items-center'
 					>
-						Last
+						&gt;&gt;
 					</button>
 				</PaginationItem>
 			</PaginationContent>

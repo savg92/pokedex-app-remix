@@ -57,7 +57,7 @@ export default function Index() {
 				<Favorites />
 			</section>
 			<section className='mt-6'>
-				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
+				<div className='flex flex-wrap justify-center gap-4'>
 					{currentData.map((pokemon: Pokemon, index: number) => (
 						<Link
 							to={pokemon.name}
