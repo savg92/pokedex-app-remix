@@ -9,6 +9,7 @@ export const getPokemons = async (limit=151, offset=0) => {
 				const pokemonResponse = await fetch(pokemon.url).then((res) =>
 					res.json()
 				);
+				if (res.status === 200) {
 				return {
 					id: pokemonResponse.id,
 					name: pokemonResponse.name,
@@ -18,6 +19,15 @@ export const getPokemons = async (limit=151, offset=0) => {
 					// img: pokemonResponse.sprites.other['dream_world'].front_default,
 					type: pokemonResponse.types[0].type.name,
 				};
+				}
+				else {
+					return {
+						id: 0,
+						name: 'Not Found',
+						img: 'https://via.placeholder.com/150',
+						type: 'none',
+					};
+				}
 			})
 		);
 
@@ -42,7 +52,7 @@ export const getPokemon = async (name: string | number | undefined) => {
 		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
-		} else {
+		} if (response.status === 200) {
 			const data = await response.json();
 			return {
 				name: data.name,
@@ -54,6 +64,17 @@ export const getPokemon = async (name: string | number | undefined) => {
 				weight: data.weight,
 			};
 			}
+		else {
+			return {
+				name: 'Not Found',
+				img: 'https://via.placeholder.com/150',
+				id: 0,
+				type: 'none',
+				avilities: [],
+				height: 0,
+				weight: 0,
+			};
+		}
 	} catch (e) {
 		return {
 			name: 'Not Found',

@@ -1,6 +1,6 @@
 // Index.js
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
-import { Link, json, useLoaderData } from '@remix-run/react';
+import { Form, Link, json, useLoaderData, useNavigate } from '@remix-run/react';
 import { getPokemons } from '~/models/pokemon.server';
 
 import CardLayout from '~/components/CardLayout/CardLayout';
@@ -36,8 +36,10 @@ export const loader = async () => {
 export default function Index() {
 	const { data } = useLoaderData<LoaderDataGetPokemons>();
 	const [currentPage, setCurrentPage] = useState(1);
+	const [searchTerm, setSearchTerm] = useState('');
 	const itemsPerPage = 20;
 	const totalPages = Math.ceil(data.length / itemsPerPage);
+	const navigate = useNavigate();
 
 	const handlePageChange = (page: number) => {
 		setCurrentPage(page);
@@ -48,11 +50,28 @@ export default function Index() {
 		currentPage * itemsPerPage
 	);
 
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		navigate(`/${searchTerm}`);
+	};
+
 	return (
 		<>
 			<h1 className='my-6 border-b-2 text-center text-3xl'>
 				Welcome to your Pokedex!
 			</h1>
+			<section>
+				<Form onSubmit={handleSubmit} className='flex justify-center gap-4 p-4'>
+					<input
+						type='text'
+						placeholder='Search Pokemon'
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+						className='...'
+					/>
+					<button type='submit'>Search</button>
+				</Form>
+			</section>
 			<section>
 				<Favorites />
 			</section>

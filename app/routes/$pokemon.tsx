@@ -43,18 +43,22 @@ export default function PostSlug() {
 	return (
 		<>
 			<h1 className='my-6 border-b-2 text-center text-3xl'>
-				You caught: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+				You caught:
+				<span className={pokemon.name === 'Not Found' ? 'text-red-500' : ''}>
+					{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+				</span>
 			</h1>
 
-			<section className='flex flex-col md:flex-row gap-4'>
+			<section className='flex flex-col md:flex-row gap-4 justify-center items-center'>
 				<img
 					className='mx-auto h-1/5 w-full'
-					// src={pokemon.img.other['official-artwork'].front_default}
-					src={pokemon.img.other['dream_world'].front_default}
-					// src={
-					// 	pokemon.img.versions['generation-v']['black-white'].animated
-					// 		.front_default
-					// }
+					src={
+						pokemon &&
+						pokemon.img &&
+						pokemon.img.other &&
+						pokemon.img.other['official-artwork'] &&
+						pokemon.img.other['official-artwork'].front_default
+					}
 					alt={pokemon.name}
 				/>
 				<div
@@ -158,14 +162,16 @@ export default function PostSlug() {
 					<div className='flex flex-col gap-2'>
 						<p>Abilities:</p>
 						<ul className='flex flex-col gap-2 ml-4'>
-							{pokemon.avilities.map(
-								(ability: { ability: { name: string } }, index: number) => (
-									<li key={index}>
-										{ability.ability.name[0].toUpperCase() +
-											ability.ability.name.slice(1)}
-									</li>
-								)
-							)}
+							{pokemon &&
+								pokemon.avilities &&
+								pokemon.avilities.map(
+									(ability: { ability: { name: string } }, index: number) => (
+										<li key={index}>
+											{ability.ability.name[0].toUpperCase() +
+												ability.ability.name.slice(1)}
+										</li>
+									)
+								)}
 						</ul>
 					</div>
 					<button
