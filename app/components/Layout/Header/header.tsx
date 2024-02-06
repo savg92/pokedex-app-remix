@@ -29,7 +29,7 @@ const Header = () => {
 				</Link>
 				<nav>
 					<ul
-						className='flex gap-4 text-lg font-semibold uppercase tracking-wider'
+						className='flex gap-8 text-lg font-semibold  tracking-wider'
 						role='navigation'
 					>
 						{/* {headerLinks.map((link) => (
