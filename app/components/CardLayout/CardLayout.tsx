@@ -17,7 +17,7 @@ const CardLayout = ({ id, name, img, type }: Pokemon) => {
 					<img
 						src={img}
 						alt={name}
-						className='transition group-hover:scale-125 mx-auto sm:w-24 w-32 sm:h-24 h-32'
+						className='transition group-hover:scale-125 mx-auto sm:w-48 sm:h-48 md:w-48 md:h-48 w-48 h-48 object-cover rounded-3xl shadow-lg bg-gray-200 dark:bg-gray-800'
 					/>
 					<p className='text-xs text-gray-500 dark:text-gray-400'>Id: {id}</p>
 					<p className='text-lg font-semibold'>
