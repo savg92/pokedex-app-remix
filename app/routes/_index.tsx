@@ -29,8 +29,12 @@ export const links: LinksFunction = () => {
 };
 
 export const loader = async () => {
-	return json<LoaderDataGetPokemons>({
-		data: await getPokemons(), // limit and offset are optional, default is 151 and 0
+	const data = await getPokemons(); // limit and offset are optional, default is 151 and 0
+	return new Response(JSON.stringify({ data }), {
+		headers: {
+			'Cache-Control': 'max-age=3600',
+			'Content-Type': 'application/json',
+		},
 	});
 };
 
@@ -38,23 +42,23 @@ export default function Index() {
 	const { data } = useLoaderData<LoaderDataGetPokemons>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState('');
+	const navigate = useNavigate();
 	const itemsPerPage = 20;
 	const totalPages = Math.ceil(data.length / itemsPerPage);
-	const navigate = useNavigate();
 
 	const handlePageChange = (page: number) => {
 		setCurrentPage(page);
+	};
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		navigate(`/${searchTerm}`);
 	};
 
 	const currentData = data.slice(
 		(currentPage - 1) * itemsPerPage,
 		currentPage * itemsPerPage
 	);
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		navigate(`/${searchTerm}`);
-	};
 
 	return (
 		<>

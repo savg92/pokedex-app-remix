@@ -12,8 +12,12 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
-	return json({
-		pokemon: await getPokemon(params.pokemon as string),
+	const pokemon = await getPokemon(params.pokemon);
+	return new Response(JSON.stringify({ pokemon }), {
+		headers: {
+			'Cache-Control': 'max-age=3600',
+			'Content-Type': 'application/json',
+		},
 	});
 };
 
