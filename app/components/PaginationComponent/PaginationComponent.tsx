@@ -9,33 +9,14 @@ import {
 	PaginationPrevious,
 } from '@/components/ui/pagination';
 import { PaginationComponentProps } from '~/types';
+import { handleFirst, handleLast, handleNext, handlePrevious } from './paginationHandlers';
 
 export const PaginationComponent = ({
 	currentPage,
 	totalPages,
 	onPageChange,
 }: PaginationComponentProps) => {
-	const handleFirst = () => {
-		onPageChange(1);
-	};
 
-	const handlePrevious = () => {
-		if (currentPage > 1) {
-			onPageChange(currentPage - 1);
-		}
-	};
-
-	const handleNext = () => {
-		if (currentPage < totalPages) {
-			onPageChange(currentPage + 1);
-		}
-	};
-
-	const handleLast = () => {
-		onPageChange(totalPages);
-	};
-
-	// Determine the range of page numbers to display (max 3)
 	const startPage = Math.max(1, currentPage - 1);
 	const endPage = Math.min(totalPages, startPage + 3);
 
@@ -47,7 +28,7 @@ export const PaginationComponent = ({
 			<PaginationContent>
 				<PaginationItem>
 					<button
-						onClick={handleFirst}
+						onClick={() => handleFirst(onPageChange)}
 						disabled={currentPage === 1}
 						className='disabled:opacity-50'
 					>
@@ -57,7 +38,7 @@ export const PaginationComponent = ({
 				<PaginationItem>
 					<PaginationPrevious
 						href='#'
-						onClick={handlePrevious}
+						onClick={() => handlePrevious(currentPage, onPageChange)}
 						className='flex items-center'
 					/>
 				</PaginationItem>
@@ -84,13 +65,13 @@ export const PaginationComponent = ({
 				<PaginationItem>
 					<PaginationNext
 						href='#'
-						onClick={handleNext}
+						onClick={() => handleNext(currentPage, totalPages, onPageChange)}
 						className='flex items-center'
 					/>
 				</PaginationItem>
 				<PaginationItem>
 					<button
-						onClick={handleLast}
+						onClick={() => handleLast(totalPages, onPageChange)}
 						disabled={currentPage === totalPages}
 						className='disabled:opacity-50 flex items-center'
 					>

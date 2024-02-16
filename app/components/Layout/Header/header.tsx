@@ -37,13 +37,6 @@ const Header = () => {
 						<li>
 							<Link to='/favorites'>Favorites</Link>
 						</li>
-						{/* {headerLinks.map((link) => (
-							<li key={link.path}>
-								<Link to={link.path}>
-									{link.name}
-									</Link>
-							</li>
-						))} */}
 					</ul>
 				</nav>
 				<ModeToggle />

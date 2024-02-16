@@ -9,7 +9,6 @@ const Favorites = () => {
 	const [favorites, setFavorites] = useState<PokemonFav[]>([]);
 
 	useEffect(() => {
-		// Ensure this code runs only on the client side
 		if (typeof window !== 'undefined') {
 			const favoritesFromStorage = JSON.parse(
 				localStorage.getItem('favorites') || '[]'
@@ -38,10 +37,7 @@ const Favorites = () => {
 							<CardLayout
 								id={pokemon.id}
 								name={pokemon.name}
-								// img={pokemon.sprites.front_default}
-								// img={pokemon.sprites.other['dream_world'].front_default}
 								img={pokemon.sprites.other['official-artwork'].front_default}
-								// img={pokemon.sprites.front_default}
 								type={pokemon.types[0].type.name}
 							/>
 						</Link>
