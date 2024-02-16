@@ -9,6 +9,7 @@ import Pokeball from '../assets/pokeball2.png';
 import Favorites from '~/components/Favorites/Favorites';
 import { PaginationComponent } from '~/components/PaginationComponent/PaginationComponent';
 import { LoaderDataGetPokemons, Pokemon } from '~/types';
+import { handlePageChange, handleSubmit } from '~/handlers';
 
 export const meta: MetaFunction = () => {
 	return [
@@ -46,14 +47,7 @@ export default function Index() {
 	const itemsPerPage = 20;
 	const totalPages = Math.ceil(data.length / itemsPerPage);
 
-	const handlePageChange = (page: number) => {
-		setCurrentPage(page);
-	};
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		navigate(`/${searchTerm}`);
-	};
 
 	const currentData = data.slice(
 		(currentPage - 1) * itemsPerPage,
@@ -67,7 +61,7 @@ export default function Index() {
 			</h1>
 			<section>
 				<Form
-					onSubmit={handleSubmit}
+					onSubmit={(e) => handleSubmit(e, navigate, searchTerm)}
 					className='flex justify-center gap-4 p-4'
 				>
 					<input
@@ -103,14 +97,14 @@ export default function Index() {
 				<PaginationComponent
 					currentPage={currentPage}
 					totalPages={totalPages}
-					onPageChange={handlePageChange}
+					onPageChange={(page: number) => handlePageChange(page, setCurrentPage)}
 				/>
 				<div className='flex justify-center mt-6 gap-4'>
 					<label htmlFor='page'>Select a page:</label>
 					<select
 						name='page'
 						id='page'
-						onChange={(e) => handlePageChange(Number(e.target.value))}
+						onChange={(e) => setCurrentPage(Number(e.target.value))}
 						value={currentPage}
 						className='bg-gray-200 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white'
 					>

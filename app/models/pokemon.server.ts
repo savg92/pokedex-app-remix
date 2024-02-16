@@ -12,8 +12,6 @@ export const getPokemons = async (limit=151, offset=0) => {
 				return {
 					id: pokemonResponse.id,
 					name: pokemonResponse.name,
-					// img: pokemonResponse.sprites.front_default,
-					// img: pokemonResponse.sprites.versions['generation-v']['black-white'].animated.front_default,
 					img: pokemonResponse.sprites.other['official-artwork'].front_default,
 					type: pokemonResponse.types[0].type.name,
 				};
