@@ -1,4 +1,4 @@
-import { json, LoaderFunction, MetaFunction } from '@remix-run/node';
+import { LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Link, useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { getPokemon } from '~/models/pokemon.server';
@@ -179,7 +179,8 @@ export default function PostSlug() {
 						</ul>
 					</div>
 					<button
-						className='bg-red-700 text-white px-4 py-2 rounded-md'						onClick={() => handleAddRemoveToFavorites(pokemon.name)}
+						className='bg-red-700 text-white px-4 py-2 rounded-md'
+						onClick={() => handleAddRemoveToFavorites(pokemon.name)}
 					>
 						{isFavorite ? 'Remove from favorites' : 'Add to favorites'}
 					</button>
