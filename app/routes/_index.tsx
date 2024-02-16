@@ -47,8 +47,6 @@ export default function Index() {
 	const itemsPerPage = 20;
 	const totalPages = Math.ceil(data.length / itemsPerPage);
 
-
-
 	const currentData = data.slice(
 		(currentPage - 1) * itemsPerPage,
 		currentPage * itemsPerPage
