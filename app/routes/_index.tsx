@@ -73,8 +73,9 @@ export default function Index() {
 					/>
 					<button
 						type='submit'
-						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-300 disabled:cursor-not-allowed'
-						disabled={searchTerm.length === 0 ? true : false}
+						className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+							searchTerm.length === 0 ? 'cursor-not-allowed bg-gray-300 hover:bg-gray-300' : ''
+						}`}
 					>
 						Search
 					</button>
@@ -97,7 +98,9 @@ export default function Index() {
 				<PaginationComponent
 					currentPage={currentPage}
 					totalPages={totalPages}
-					onPageChange={(page: number) => handlePageChange(page, setCurrentPage)}
+					onPageChange={(page: number) =>
+						handlePageChange(page, setCurrentPage)
+					}
 				/>
 				<div className='flex justify-center mt-6 gap-4'>
 					<label htmlFor='page'>Select a page:</label>

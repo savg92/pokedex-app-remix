@@ -14,4 +14,18 @@ const handleSubmit = (
 	navigate(`/${searchTerm}`);
 };
 
-export { handlePageChange, handleSubmit };
+	const handleAddRemoveToFavorites = (
+		favorites: string[],
+		pokemon: string,
+		setFavorites: (arg0: string[]) => void,
+		setIsFavorite: (arg0: boolean) => void
+	) => {
+		const updatedFavorites = favorites.includes(pokemon)
+			? favorites.filter((fav) => fav !== pokemon)
+			: [...favorites, pokemon];
+		localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+		setFavorites(updatedFavorites);
+		setIsFavorite(updatedFavorites.includes(pokemon));
+	};
+
+export { handlePageChange, handleSubmit, handleAddRemoveToFavorites };
