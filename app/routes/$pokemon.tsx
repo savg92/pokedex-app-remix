@@ -35,7 +35,7 @@ export default function PostSlug() {
 		setIsFavorite(favoritesFromStorage.includes(pokemon.name));
 	}, []);
 
-	const handleAddRemoveToFavorites = (pokemon: string) => {
+	const handleAddRemoveToFavorites = (favorites: string[], pokemon: string, setFavorites: (arg0: string[]) => void, setIsFavorite: (arg0: boolean) => void) => {
 		const updatedFavorites = favorites.includes(pokemon)
 			? favorites.filter((fav) => fav !== pokemon)
 			: [...favorites, pokemon];
@@ -180,7 +180,7 @@ export default function PostSlug() {
 					</div>
 					<button
 						className='bg-red-700 text-white px-4 py-2 rounded-md'
-						onClick={() => handleAddRemoveToFavorites(pokemon.name)}
+						onClick={() => handleAddRemoveToFavorites(favorites, pokemon.name, setFavorites, setIsFavorite)}
 					>
 						{isFavorite ? 'Remove from favorites' : 'Add to favorites'}
 					</button>
