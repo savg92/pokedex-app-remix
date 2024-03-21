@@ -41,6 +41,7 @@ bun dev
 - [PokeAPI](https://pokeapi.co/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Shadcn/ui](https://ui.shadcn.com/)
+- [Vercel](https://vercel.com/)
 
 ## License
 
