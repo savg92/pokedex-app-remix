@@ -1,6 +1,6 @@
 // Index.js
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
-import { Form, Link, json, useLoaderData, useNavigate } from '@remix-run/react';
+import {  Link, useLoaderData, useNavigate } from '@remix-run/react';
 import { getPokemons } from '~/models/pokemon.server';
 
 import CardLayout from '~/components/CardLayout/CardLayout';
