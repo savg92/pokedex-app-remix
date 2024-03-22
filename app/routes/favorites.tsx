@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { MetaFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
 import Favorites from '~/components/Favorites/Favorites';
@@ -15,7 +16,7 @@ const favorites = () => {
 			<Favorites />
 			<div className='pt-8 px-16 w-full'>
 				<Link to='/'>
-					<p>﹤ Back to the Pokedex</p>
+					<Button>﹤ Back to the Pokedex</Button>
 				</Link>
 			</div>
 		</>
